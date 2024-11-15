@@ -2,6 +2,7 @@
 galaxy_info:
   author: Raymond Val
   role_name: ansible_role_mde4linux
+  namespace: sewanee-raval
   description: An Ansible role to Install and Remove Microsoft Defender Endpoint for Linux
   license: GPL-3.0-only
   min_ansible_version: "2.1"

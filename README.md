@@ -16,15 +16,17 @@ Role Variables
 
 The primary role variable that must be set is the EDR Channel variable.
 
-edr_distro: rhel  # ansible_distribution
-edr_version: 8    # ansible_distribution_major_version
-edr_channel: insiders-fast # insiders-fast, insiders-slow, prod
+ - edr_distro: The distributions for the installation. Can use ansible_distribution
+ - edr_version: The version number of the distributions. Can use ansible_distribution_major_version
+ - edr_channel: The channel for installation (insiders-fast, insiders-slow, prod)
 
-The choice of the channel determines the type and frequency of updates that are offered to your device. Devices in insiders-fast are the first ones to receive updates and new features, followed later by insiders-slow, and lastly by prod.
+The choice of the channel determines the type and frequency of updates that are offered to your device. 
+Devices in insiders-fast are the first ones to receive updates and new features, followed later by insiders-slow, and lastly by prod.
 
 When installing MDE4L it is suggested to have at least machine with an edr_channel set to insiders-fast 
 
-Switching the channel after the initial installation requires the product to be reinstalled. To switch the product channel: uninstall the existing package, re-configure your device to use the new channel, and follow the steps in this document to install the package from the new location.
+Switching the channel after the initial installation requires the product to be reinstalled. 
+To switch the product channel: uninstall the existing package, re-configure your device to use the new channel, and follow the steps in this document to install the package from the new location.
 
 
 Dependencies

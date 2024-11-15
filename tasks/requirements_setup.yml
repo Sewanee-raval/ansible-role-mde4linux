@@ -10,7 +10,7 @@
 
 ---
 - name: Ensure required files are installed for RHEL / OEL
-  package:
+  ansible.builtin.package:
     name:
       - audit
       - glibc
@@ -25,7 +25,7 @@
   when: ansible_os_family == "RedHat"
 
 - name: Ensure required files are installed for Ubuntu systems
-  package:
+  ansible.builtin.package:
     name:
       - curl
       - libplist-utils

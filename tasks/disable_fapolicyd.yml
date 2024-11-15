@@ -3,16 +3,19 @@
 # Written : 15-November-2024 (Raymond Val)
 # Purpose : Disable fapolicyd because it interferes with MDE
 # Notes   :
-#         
+#
 #   Revision History:
 #   Name:           Date:        Description:
 # -----------------------------------------------------------------
 
-# Running Defender for Endpoint on Linux side by side with other fanotify-based security solutions is not supported. 
-# It can lead to unpredictable results, including hanging the operating system. 
-# If there are any other applications on the system that use fanotify in blocking mode, applications are listed in the conflicting_applications field of the mdatp health command output. 
-# The Linux FAPolicyD feature uses fanotify in blocking mode, and is therefore unsupported when running Defender for Endpoint in active mode. 
-# You can still safely take advantage of Defender for Endpoint on Linux EDR functionality after configuring the antivirus functionality Real Time Protection Enabled to Passive mode.
+# Running Defender for Endpoint on Linux side by side with other fanotify-based security solutions is not supported.
+# It can lead to unpredictable results, including hanging the operating system.
+# If there are any other applications on the system that use fanotify in blocking mode,
+# applications are listed in the conflicting_applications field of the mdatp health command output.
+# The Linux FAPolicyD feature uses fanotify in blocking mode,
+# and is therefore unsupported when running Defender for Endpoint in active mode.
+# You can still safely take advantage of Defender for Endpoint on Linux EDR functionality
+# after configuring the antivirus functionality Real Time Protection Enabled to Passive mode.
 
 ---
 - name: Disable fapolicyd
@@ -22,6 +25,6 @@
     enabled: false
     masked: true
 
-- name: Just force systemd to reread configs
+- name: Force systemd to reread configs
   ansible.builtin.systemd_service:
     daemon_reload: true

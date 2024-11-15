@@ -9,16 +9,16 @@
 # -----------------------------------------------------------------
 
 ---
-- name: include onboarding tasks
-  import_tasks:
+- name: Include onboarding tasks
+  ansible.builtin.import_tasks:
     file: tasks/onboarding_setup.yml
 
-- name: add apt repository
-  import_tasks:
+- name: Add apt repository
+  ansible.builtin.import_tasks:
     file: tasks/add_apt_repo.yml
 
 - name: Install MDATP
   ansible.builtin.package:
     name: mdatp
     state: latest
-    update_cache: yes
+    update_cache: true

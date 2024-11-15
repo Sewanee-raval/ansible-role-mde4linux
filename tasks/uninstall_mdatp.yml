@@ -16,8 +16,8 @@
 
 
 
-- name: remove Repository file
-  file: 
+- name: Remove Repository file
+  ansible.builtin.file: 
     path: /etc/yum.repos.d/microsoft-defender
     state: absent
-  notify: yum-clean-metadata
+  notify: Yum-clean-metadata

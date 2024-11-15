@@ -1,2 +1,27 @@
 ---
 # tasks file for ansible-role
+
+# Ensure Required files are installed
+- name: Ensure all required packages are installed
+  import_tasks: requirements_setup.yml
+
+# Perform Onboarding 
+- name: Perform Onboarding 
+  import_tasks: onboarding_setup.yml
+
+
+- name: Install the correct web server for Debian
+  import_tasks: debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# roles/example/tasks/redhat.yml
+- name: Install web server
+  ansible.builtin.yum:
+    name: "httpd"
+    state: present
+
+# roles/example/tasks/debian.yml
+- name: Install web server
+  ansible.builtin.apt:
+    name: "apache2"
+    state: present

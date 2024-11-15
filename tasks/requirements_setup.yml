@@ -1,0 +1,37 @@
+# -----------------------------------------------------------------
+# Filename: requirements_setup.yml
+# Written : 15-November-2024 (Raymond Val)
+# Purpose : Ensure the required files are installed
+# Notes   :
+#         
+#   Revision History:
+#   Name:           Date:        Description:
+# -----------------------------------------------------------------
+
+---
+- name: Ensure required files are installed for RHEL / OEL
+  package:
+    name:
+      - audit
+      - glibc
+      - policycoreutils
+      - libsemanage
+      - selinux-policy-targeted
+      - libmnl
+      - libnfnetlink
+      - libnetfilter_queue
+      - glib2
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Ensure required files are installed for Ubuntu systems
+  package:
+    name:
+      - curl
+      - libplist-utils
+      - uuid-runtime
+      - auditd
+      - libnetfilter-queue1
+      - libglib2.0-0
+    state: present
+  when: ansible_os_family == "Debian"

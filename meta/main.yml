@@ -1,9 +1,9 @@
 ---
 galaxy_info:
-  role_name: ansible_role
-  namespace: coopdevs
-  author: Coopdevs
-  description: An Ansible role to <>
+  role_name: ansible_role_mde4linux
+  namespace: sewanee-raval
+  author: sewanee-raval
+  description: An Ansible role to Install and Remove Microsoft Defender Endpoint for Linux
   license: GPL-3.0-only
   min_ansible_version: "2.1"
 
@@ -11,5 +11,10 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
+
+    - name: EL
+      versions:
+        - "8"
+        - "9"
 
   galaxy_tags: []

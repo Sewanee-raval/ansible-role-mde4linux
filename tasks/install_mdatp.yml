@@ -1,0 +1,24 @@
+# -----------------------------------------------------------------
+# Filename: install_mdatp.yml
+# Written : 15-November-2024 (Raymond Val)
+# Purpose : Install Microsoft Defender
+# Notes   :
+#         
+#   Revision History:
+#   Name:           Date:        Description:
+# -----------------------------------------------------------------
+
+---
+- name: include onboarding tasks
+  import_tasks:
+    file: tasks/onboarding_setup.yml
+
+- name: add apt repository
+  import_tasks:
+    file: tasks/add_apt_repo.yml
+
+- name: Install MDATP
+  ansible.builtin.package:
+    name: mdatp
+    state: latest
+    update_cache: yes

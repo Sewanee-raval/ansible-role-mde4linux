@@ -1,0 +1,23 @@
+# -----------------------------------------------------------------
+# Filename: uninstall_mdatp.yml
+# Written : 15-November-2024 (Raymond Val)
+# Purpose : Uninstall Microsoft Defender
+# Notes   :
+#         
+#   Revision History:
+#   Name:           Date:        Description:
+# -----------------------------------------------------------------
+
+---
+- name: Uninstall MDATP
+  ansible.builtin.package:
+    name: mdatp
+    state: absent
+
+
+
+- name: remove Repository file
+  file: 
+    path: /etc/yum.repos.d/microsoft-defender
+    state: absent
+  notify: yum-clean-metadata

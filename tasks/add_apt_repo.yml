@@ -1,0 +1,76 @@
+# -----------------------------------------------------------------
+# Filename: add_apt_repo.yml
+# Written : 15-November-2024 (Raymond Val)
+# Purpose : Install Microsoft Repository
+# Notes   :
+#         
+#   Revision History:
+#   Name:           Date:        Description:
+# -----------------------------------------------------------------
+
+# Defender for Endpoint on Linux can be deployed from one of the following channels:
+# insiders-fast, denoted as [channel]
+# insiders-slow, denoted as [channel]
+# prod, denoted as [channel] using the version name (see Linux Software Repository for Microsoft Products)
+
+# The choice of the channel determines the type and frequency of updates that are offered to your device.
+# Devices in insiders-fast are the first ones to receive updates and new features, 
+# followed later by insiders-slow, and lastly by prod.
+---
+- name: Set EDR Variables
+  set_fact:
+    edr_distro: rhel  # ansible_distribution
+    edr_version: 8    # ansible_distribution_major_version
+    edr_channel: insiders-fast # insiders-fast, insiders-slow, prod
+
+# Add Repository for Ubuntu Systems
+- name: Add Microsoft APT key
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add Microsoft apt repository for MDATP
+  apt_repository:
+    repo: deb [arch=arm64,armhf,amd64] https://packages.microsoft.com/{{ edr_distro }}/{{ edr_version }}/prod [codename] main
+    update_cache: yes
+    state: present
+    filename: microsoft-[channel]
+  when: ansible_os_family == "Debian"
+
+# Add Repository for RHEL / OEL systems
+- name: Add Microsoft DNF/YUM key
+  rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+  when: ansible_os_family == "RedHat"
+
+- name: Add  Microsoft yum repository for MDATP
+  yum_repository:
+    name: packages-microsoft-insiders-fast
+    description: Microsoft Defender for Endpoint Insiders Fast packages
+    file: microsoft-defender
+    baseurl: https://packages.microsoft.com/{{ edr_distro }}/{{ edr_version }}/insiders-fast/ 
+    gpgcheck: yes
+    enabled: Yes
+  when: ansible_os_family == "RedHat"
+
+- name: Add  Microsoft yum repository for MDATP
+  yum_repository:
+    name: packages-microsoft-insiders-slow
+    description: Microsoft Defender for Endpoint Insiders Slow packages
+    file: microsoft-defender
+    baseurl: https://packages.microsoft.com/{{ edr_distro }}/{{ edr_version }}/insiders-slow/ 
+    gpgcheck: yes
+    enabled: No
+  when: ansible_os_family == "RedHat"
+
+- name: Add  Microsoft yum repository for MDATP
+  yum_repository:
+    name: packages-microsoft-prod
+    description: Microsoft Defender for Endpoint Product packages
+    file: microsoft-defender
+    baseurl: https://packages.microsoft.com/{{ edr_distro }}/{{ edr_version }}/prod/ 
+    gpgcheck: yes
+    enabled: No
+  when: ansible_os_family == "RedHat"

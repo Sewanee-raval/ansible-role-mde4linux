@@ -5,14 +5,14 @@
 - name: Ensure all required packages are installed
   ansible.builtin.import_tasks: requirements_setup.yml
 
-# Perform Onboarding 
-- name: Perform Onboarding 
+# Perform Onboarding
+- name: Perform Onboarding
   ansible.builtin.import_tasks: onboarding_setup.yml
 
 # Add Repository
 - name: Install the correct web server for Debian
   ansible.builtin.import_tasks: add_repository.yml
-  
+
 # Install Software
 - name: Install mdatp
   ansible.builtin.import_tasks: install_mdatp.yml

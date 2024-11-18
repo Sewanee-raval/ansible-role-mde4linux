@@ -14,8 +14,6 @@
     name: mdatp
     state: absent
 
-
-
 - name: Remove Repository file
   ansible.builtin.file: 
     path: /etc/yum.repos.d/microsoft-defender

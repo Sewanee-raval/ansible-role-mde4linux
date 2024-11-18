@@ -3,7 +3,7 @@
 # Written : 15-November-2024 (Raymond Val)
 # Purpose : Install Microsoft Defender
 # Notes   :
-#         
+#
 #   Revision History:
 #   Name:           Date:        Description:
 # -----------------------------------------------------------------
@@ -20,5 +20,5 @@
 - name: Install MDATP
   ansible.builtin.package:
     name: mdatp
-    state: latest
+    state: present
     update_cache: true

@@ -4,7 +4,7 @@
 # Purpose : Install Microsoft Defender Onboarding package
 # Notes   : Need to download Onboarding package from MS Defender
 #         : website. Need to us the package for Ansible
-#         
+#
 #   Revision History:
 #   Name:           Date:        Description:
 # -----------------------------------------------------------------

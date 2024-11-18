@@ -3,7 +3,7 @@
 # Written : 15-November-2024 (Raymond Val)
 # Purpose : Uninstall Microsoft Defender
 # Notes   :
-#         
+#
 #   Revision History:
 #   Name:           Date:        Description:
 # -----------------------------------------------------------------
@@ -15,7 +15,7 @@
     state: absent
 
 - name: Remove Repository file
-  ansible.builtin.file: 
+  ansible.builtin.file:
     path: /etc/yum.repos.d/microsoft-defender
     state: absent
   notify: Yum-clean-metadata
